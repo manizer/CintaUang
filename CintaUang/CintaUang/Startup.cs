@@ -37,7 +37,9 @@ namespace CintaUang
             services.AddTransient<CintaUangDbContext>();
             services.AddTransient<UnitOfWork>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
-        }
+
+			services.AddMvc();
+		}
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
@@ -45,6 +47,15 @@ namespace CintaUang
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseStaticFiles();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}"
+                );
+            });
 
             app.Run(async (context) =>
             {   

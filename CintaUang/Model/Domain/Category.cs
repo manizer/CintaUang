@@ -7,7 +7,7 @@ namespace Model.Domain
     public class Category
     {
         [Key]
-        public string CategoryId { get; set; }
+        public int CategoryId { get; set; }
         public string CategoryName { get; set; }
     }
 }
