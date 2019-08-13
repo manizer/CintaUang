@@ -1,0 +1,55 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Repository.Base.Helper;
+using Repository.Base.Helper.StoredProcedure;
+using Repository.Context;
+using Repository.Repositories;
+
+namespace CintaUang
+{
+    public class Startup
+    {
+        private readonly IConfiguration configuration;
+
+        public Startup(IConfiguration configuration)
+        {
+            this.configuration = configuration;
+        }
+
+        public void ConfigureServices(IServiceCollection services)
+        {
+            // Internal Repo & Service Registration
+            services.AddTransient<IStoredProcedureBuilder, PGStoredProcedureBuilder>();
+            services.AddTransient<DbUtil>();
+            services.AddEntityFrameworkNpgsql()
+                .AddDbContext<CintaUangDbContext>(options =>
+                {
+                    options.UseNpgsql(configuration.GetConnectionString("CintaUangDbConnection"));
+                }, ServiceLifetime.Scoped, ServiceLifetime.Transient);
+            services.AddTransient<CintaUangDbContext>();
+            services.AddTransient<UnitOfWork>();
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
+        }
+
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+
+            app.Run(async (context) =>
+            {   
+                await context.Response.WriteAsync("Hello World!");
+            });
+        }
+    }
+}
