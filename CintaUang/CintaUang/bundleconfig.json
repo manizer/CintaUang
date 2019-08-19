@@ -1,0 +1,54 @@
+[
+  {
+    "outputFileName": "wwwroot/css/vendor.min.css",
+    "inputFiles": [
+      "wwwroot/lib/bootstrap/dist/css/bootstrap.css",
+      "wwwroot/lib/fancybox/jquery.fancybox.css",
+      "wwwroot/lib/jquery-datetimepicker/jquery.datetimepicker.css"
+    ],
+    "minify": {
+      "enabled": true
+    }
+  },
+  {
+    "outputFileName": "wwwroot/js/vendor.min.js",
+    "inputFiles": [
+      "wwwroot/lib/jquery/jquery.js",
+      "wwwroot/lib/bootstrap/dist/js/bootstrap.js",
+      "wwwroot/lib/bootstrap-growl/jquery.bootstrap-growl.js",
+      "wwwroot/lib/fancybox/jquery.fancybox.js",
+      "wwwroot/lib/jquery-datetimepicker/jquery.datetimepicker.full.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    "sourceMap": false
+  },
+  {
+    "outputFileName": "wwwroot/js/vendor-validate.min.js",
+    "inputFiles": [
+      "wwwroot/lib/jquery-validate/jquery.validate.js",
+      "wwwroot/lib/jquery-validate/additional-methods.js",
+      "wwwroot/lib/jquery-ajax-unobtrusive/dist/jquery-unobtrusive-ajax.js",
+      "wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    "sourceMap": false
+  },
+  {
+    "outputFileName": "wwwroot/js/vendor-moment.min.js",
+    "inputFiles": [
+      "wwwroot/lib/momentjs/moment.js",
+      "wwwroot/lib/moment-timezone/moment-timezone.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    "sourceMap": false
+  }
+]
