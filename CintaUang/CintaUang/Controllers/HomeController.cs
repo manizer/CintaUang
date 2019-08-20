@@ -9,7 +9,7 @@ using Repository.Repositories;
 
 namespace CintaUang.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private readonly ICategoryRepository categoryRepository;
         private readonly UnitOfWork unitOfWork;
@@ -31,6 +31,8 @@ namespace CintaUang.Controllers
 
             // Without local context
             var categories = await categoryRepository.GetCategories();
+            AddAlert("Success", "Alert Sukses terbentuk");
+            AddAlert("Error", "Alert Error terbentuk");
             return View();
         }
     }
