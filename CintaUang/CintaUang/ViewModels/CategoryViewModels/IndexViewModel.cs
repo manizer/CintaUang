@@ -9,5 +9,10 @@ namespace CintaUang.ViewModels.CategoryViewModels
 	public class IndexViewModel
 	{
 		public List<Category> Categories { get; set; }
+
+		#region Form Data
+		public int CategoryId { get; set; }
+		public string CategoryName { get; set; }
+		#endregion
 	}
 }
