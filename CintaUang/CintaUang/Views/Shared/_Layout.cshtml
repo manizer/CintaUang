@@ -13,9 +13,9 @@
     <script type="text/javascript" src="~/js/site.min.js"></script>
     @RenderSection("Scripts", false)
 
-    @if (TempData["listAlert"] != null)
+    @if (TempData["viewNotifications"] != null)
     {
-        @await Html.PartialAsync("_AlertMessage", TempData["listAlert"]);
+        @await Html.PartialAsync("_ViewNotification", TempData["viewNotifications"]);
     }
 </body>
 </html>

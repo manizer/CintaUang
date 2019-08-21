@@ -45,7 +45,7 @@ namespace Repository.Base
             return await Result;
         }
 
-        public async Task<TEntity> ExecSPToSingleAsync(StoredProcedure sp)
+		public async Task<TEntity> ExecSPToSingleAsync(StoredProcedure sp)
         {
             Task<TEntity> Result = null;
             try
@@ -93,7 +93,7 @@ namespace Repository.Base
             return await Task.FromResult(ExecuteResults.AsEnumerable());
         }
 
-        public void UseContext(CintaUangDbContext context)
+		public void UseContext(CintaUangDbContext context)
         {
             PrevDbContext = this.Context;
             this.Context = context;

@@ -31,8 +31,8 @@ namespace CintaUang.Controllers
 
             // Without local context
             var categories = await categoryRepository.GetCategories();
-            AddNotification(ViewNotificationType.SUCCESS, "Alert Sukses terbentuk");
-            AddNotification(ViewNotificationType.ERROR, "Alert Error terbentuk");
+            AddNotification(ViewNotification.Make("Alert sukses terbentuk", ViewNotification.SUCCESS));
+            AddNotification(ViewNotification.Make("Alert Error terbentuk", ViewNotification.ERROR));
             return View();
         }
     }
