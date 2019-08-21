@@ -1,6 +1,6 @@
 ﻿@model CintaUang.ViewModels.CategoryViewModels.CategoriesTableViewModel
 
-<table id="datatable">
+<table id="categories-datatable">
     <thead>
         <tr>
             <th>ID</th>
@@ -17,3 +17,29 @@
         }
     </tbody>
 </table>
+
+
+<script type="text/javascript"> 
+        $("#categories-datatable").DataTable({
+            "processing": true,
+            "serverSide": true,
+            "filter": true,
+            "orderMulti": false,
+            "ajax": {
+                "url": "/Category/DTT",
+                "type": "POST",
+                "datatype": "json"
+            },
+            "columnDefs":
+                [{
+                    "targets": [0],
+                    "visible": false,
+                    "searchable": false
+                }],
+            "columns": [
+                { "data": "CategoryID", "name": "CategoryID", "autoWidth": true },
+                { "data": "CategoryID", "name": "CategoryID", "autoWidth": true }
+            ]
+        });
+        
+</script>
