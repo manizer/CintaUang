@@ -9,10 +9,26 @@ namespace CintaUang.Controllers
 {
     public class BaseController : Controller
     {
+		public enum ViewNotificationType
+		{
+			ERROR = 0,
+			SUCCESS = 1
+		}
+
         List<AlertMessage> listAlert = new List<AlertMessage>();
-        public void AddAlert(string type, string message)
+
+        public void AddNotification(ViewNotificationType notificationType, string message)
         {
-            listAlert.Add(new AlertMessage(type, message));
+			switch ((int)notificationType)
+			{
+				case (int)ViewNotificationType.ERROR:
+					listAlert.Add(new AlertMessage("Error", message));
+					break;
+				case (int)ViewNotificationType.SUCCESS:
+					listAlert.Add(new AlertMessage("Success", message));
+					break;
+			}
+            
             TempData["listAlert"] = listAlert;
         }
     }
