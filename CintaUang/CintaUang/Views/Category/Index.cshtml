@@ -1,0 +1,12 @@
+﻿@model CintaUang.ViewModels.CategoryViewModels.IndexViewModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+@foreach(var category in Model.Categories)
+{
+    <p>@category.CategoryName</p>
+}
