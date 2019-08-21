@@ -1,42 +1,19 @@
 ﻿@model CintaUang.ViewModels.CategoryViewModels.CategoriesTableViewModel
 
-<table id="categories-datatable">
-    <tr>
-        <th>ID</th>
-        <th>Nama</th>
-    </tr>
-    @foreach (var category in Model.Categories)
-    {
+<table id="datatable">
+    <thead>
         <tr>
-            <td>@category.CategoryId</td>
-            <td>@category.CategoryName</td>
+            <th>ID</th>
+            <th>Nama</th>
         </tr>
-    }
+    </thead>
+    <tbody>
+        @foreach (var category in Model.Categories)
+        {
+            <tr>
+                <td>@category.CategoryId</td>
+                <td>@category.CategoryName</td>
+            </tr>
+        }
+    </tbody>
 </table>
-@section Scripts{ 
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("#categories-datatable").DataTable({
-            "processing": true,
-            "serverSide": true,
-            "filter": true,
-            "orderMulti": false,
-            "ajax": {
-                "url": "/Category/DTT",
-                "type": "POST",
-                "datatype": "json"
-            },
-            "columnDefs":
-                [{
-                    "targets": [0],
-                    "visible": false,
-                    "searchable": false
-                }],
-            "columns": [
-                { "data": "CategoryID", "name": "CategoryID", "autoWidth": true },
-                { "data": "CategoryID", "name": "CategoryID", "autoWidth": true }
-            ]
-        });
-    });
-</script>
-    }

@@ -7,3 +7,13 @@
 <h2>Categories</h2>
 
 @await Component.InvokeAsync("CategoriesTable")
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#datatable").DataTable({
+                "dom": '<"top"i>rt<"bottom"flp><"clear">'
+            });
+        });
+    </script>
+}
