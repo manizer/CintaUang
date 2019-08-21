@@ -4,9 +4,6 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<h2>Categories</h2>
 
-@foreach(var category in Model.Categories)
-{
-    <p>@category.CategoryName</p>
-}
+@await Component.InvokeAsync("CategoriesTable")

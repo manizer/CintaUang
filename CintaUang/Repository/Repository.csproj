@@ -12,7 +12,6 @@
     <Folder Include="Base\" />
     <Folder Include="Base\Helper\" />
     <Folder Include="Context\" />
-    <Folder Include="Repositories\" />
     <Folder Include="Base\Helper\StoredProcedure\" />
   </ItemGroup>
   <ItemGroup>

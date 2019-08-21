@@ -52,5 +52,17 @@
       "library": "jquery-datetimepicker@2.5.20",
       "destination": "wwwroot/lib/jquery-datetimepicker"
     }
-  ]
+  ,
+{
+  "provider": "cdnjs",
+  "library": "datatable@2.0.1",
+  "destination": "wwwroot/lib/datatable/"
+}
+,
+{
+  "provider": "cdnjs",
+  "library": "jqueryui@1.12.1",
+  "destination": "wwwroot/lib/jqueryui/"
+}
+]
 }

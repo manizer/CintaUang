@@ -4,7 +4,10 @@
     "inputFiles": [
       "wwwroot/lib/bootstrap/dist/css/bootstrap.css",
       "wwwroot/lib/fancybox/jquery.fancybox.css",
-      "wwwroot/lib/jquery-datetimepicker/jquery.datetimepicker.css"
+      "wwwroot/lib/jquery-datetimepicker/jquery.datetimepicker.css",
+      "wwwroot/lib/datatable/css/datatable.css",
+      "wwwroot/lib/datatable/css/datatable-bootstrap.css",
+      "wwwroot/lib/jqueryui/jquery-ui.css"
     ],
     "minify": {
       "enabled": true
@@ -17,7 +20,9 @@
       "wwwroot/lib/bootstrap/dist/js/bootstrap.js",
       "wwwroot/lib/bootstrap-growl/jquery.bootstrap-growl.js",
       "wwwroot/lib/fancybox/jquery.fancybox.js",
-      "wwwroot/lib/jquery-datetimepicker/jquery.datetimepicker.full.js"
+      "wwwroot/lib/jquery-datetimepicker/jquery.datetimepicker.full.js",
+      "wwwroot/lib/datatable/js/datatable.js",
+      "wwwroot/lib/jqueryui/jquery-ui.js"
     ],
     "minify": {
       "enabled": true,

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Model.Domain;
 using Repository.Base.Helper;
-using Repository.Repositories;
+using Repository.Repositories.CategoryRepositories;
 
 namespace CintaUang.Controllers
 {

@@ -11,7 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Repository.Base.Helper;
 using Repository.Base.Helper.StoredProcedure;
 using Repository.Context;
-using Repository.Repositories;
+using Repository.Repositories.CategoryRepositories;
 
 namespace CintaUang
 {
@@ -36,7 +36,12 @@ namespace CintaUang
                 }, ServiceLifetime.Scoped, ServiceLifetime.Transient);
             services.AddTransient<CintaUangDbContext>();
             services.AddTransient<UnitOfWork>();
+
+			/**
+			 * Repositories
+			 */
             services.AddTransient<ICategoryRepository, CategoryRepository>();
+			services.AddTransient<ICategoryDataTableRepository, CategoryDataTableRowRepository>();
 
 			services.AddMvc();
 		}
