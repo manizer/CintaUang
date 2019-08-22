@@ -1,5 +1,6 @@
 using System;
 using Microsoft.EntityFrameworkCore;
+using Model.DataTable.Category;
 using Model.Domain;
 
 namespace Repository.Context
@@ -12,5 +13,6 @@ namespace Repository.Context
 
         public DbSet<ExecuteResult> ExecuteResultDbSet { get; set; }
         public DbSet<Category> CategoryDbSet { get; set; }
+		public DbSet<CategoryDataTableRow> CategoryDataTableRowDbSet { get; set; }
     }
 }
