@@ -5,8 +5,8 @@
       "wwwroot/lib/bootstrap/dist/css/bootstrap.css",
       "wwwroot/lib/fancybox/jquery.fancybox.css",
       "wwwroot/lib/jquery-datetimepicker/jquery.datetimepicker.css",
-      "wwwroot/lib/jqueryui/jquery-ui.css",
-      "wwwroot/lib/datatables/css/dataTables.bootstrap.css"
+      "wwwroot/lib/jqueryui/jquery-ui.css"
+      //"wwwroot/lib/datatables/css/dataTables.bootstrap.css"
     ],
     "minify": {
       "enabled": true

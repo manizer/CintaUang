@@ -29,7 +29,6 @@ namespace Repository.Base
             {
                 Result = Task.Run(() =>
                 {
-                    Thread.Sleep(2000);
                     return Context.Set<TEntity>().FromSql<TEntity>(sp.SP, sp.args).ToList().AsEnumerable();
                 });
             }

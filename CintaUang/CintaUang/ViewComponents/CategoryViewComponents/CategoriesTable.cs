@@ -1,6 +1,6 @@
 ﻿using CintaUang.ViewModels.CategoryViewModels;
 using Microsoft.AspNetCore.Mvc;
-using Model.Domain;
+using Model.DTO.DB;
 using Repository.Base.Helper;
 using Repository.Repositories.CategoryRepositories;
 using System;
@@ -24,7 +24,7 @@ namespace CintaUang.ViewComponents.CategoryViewComponents
 
 		public async Task<IViewComponentResult> InvokeAsync()
 		{
-			List<Category> Categories = (await categoryRepository.GetCategories())?.ToList();
+			List<CategoryDTO> Categories = (await categoryRepository.GetCategories())?.ToList();
 
 			return View("~/Views/Category/_CategoriesTable.cshtml", new CategoriesTableViewModel
 			{

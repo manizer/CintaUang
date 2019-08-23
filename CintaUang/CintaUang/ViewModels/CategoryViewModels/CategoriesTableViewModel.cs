@@ -1,4 +1,5 @@
 ﻿using Model.Domain;
+using Model.DTO.DB;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,6 @@ namespace CintaUang.ViewModels.CategoryViewModels
 {
 	public class CategoriesTableViewModel
 	{
-		public List<Category> Categories { get; set; }
+		public List<CategoryDTO> Categories { get; set; }
 	}
 }

@@ -1,13 +1,12 @@
-using System;
-using System.ComponentModel.DataAnnotations;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Model.Domain
 {
-    public class Category
-    {
-        [Key]
-        public int CategoryId { get; set; }
-        public string CategoryName { get; set; }
-    }
+	public class Category
+	{
+		public int CategoryId { get; set; }
+		public string CategoryName { get; set; }
+	}
 }

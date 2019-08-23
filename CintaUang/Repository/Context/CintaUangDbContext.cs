@@ -1,7 +1,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
-using Model.DataTable.Category;
-using Model.Domain;
+using Model.DTO.DB;
+using Model.DTO.DB.DataTable;
 
 namespace Repository.Context
 {
@@ -11,8 +11,8 @@ namespace Repository.Context
         {
         }
 
-        public DbSet<ExecuteResult> ExecuteResultDbSet { get; set; }
-        public DbSet<Category> CategoryDbSet { get; set; }
-		public DbSet<CategoryDataTableRow> CategoryDataTableRowDbSet { get; set; }
+        public DbSet<ExecuteResultDTO> ExecuteResultDbSet { get; set; }
+        public DbSet<CategoryDTO> CategoryDbSet { get; set; }
+		public DbSet<CategoryDataTableRowDTO> CategoryDataTableRowDbSet { get; set; }
     }
 }

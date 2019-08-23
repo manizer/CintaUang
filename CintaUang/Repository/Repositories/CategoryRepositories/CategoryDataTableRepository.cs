@@ -1,6 +1,4 @@
-﻿using Model.Common;
-using Model.DataTable;
-using Model.DataTable.Category;
+﻿using Model.DTO.DB.DataTable;
 using Repository.Base;
 using Repository.Base.Helper;
 using Repository.Context;
@@ -12,16 +10,16 @@ using System.Threading.Tasks;
 
 namespace Repository.Repositories.CategoryRepositories
 {
-	public interface ICategoryDataTableRepository : IRepository<CategoryDataTableRow>
+	public interface ICategoryDataTableRepository : IRepository<CategoryDataTableRowDTO>
 	{
-		Task<AjaxDataTable<CategoryDataTableRow>> GetCategoryDataTable(int Page, int Take, string Search, int OrderColIdx, string OrderDirection);
+		Task<AjaxDataTableDTO<CategoryDataTableRowDTO>> GetCategoryDataTable(int Page, int Take, string Search, int OrderColIdx, string OrderDirection);
 	}
 
-	public class CategoryDataTableRepository : BaseRepository<CategoryDataTableRow>, ICategoryDataTableRepository
+	public class CategoryDataTableRepository : BaseRepository<CategoryDataTableRowDTO>, ICategoryDataTableRepository
 	{
 		public CategoryDataTableRepository(CintaUangDbContext dbContext, DbUtil dbUtil) : base(dbContext, dbUtil) { }
 
-		public async Task<AjaxDataTable<CategoryDataTableRow>> GetCategoryDataTable(int Page, int Take, string Search, int OrderColIdx, string OrderDirection)
+		public async Task<AjaxDataTableDTO<CategoryDataTableRowDTO>> GetCategoryDataTable(int Page, int Take, string Search, int OrderColIdx, string OrderDirection)
 		{
 			var sp = DbUtil.StoredProcedureBuilder.WithSPName("mscategory_getallpaginated")
 				.AddParam(Page)
@@ -30,9 +28,9 @@ namespace Repository.Repositories.CategoryRepositories
 				.AddParam(OrderColIdx)
 				.AddParam(Search)
 				.SP();
-			IEnumerable<CategoryDataTableRow> categoryDataTableRows = await ExecSPToListAsync(sp);
+			IEnumerable<CategoryDataTableRowDTO> categoryDataTableRows = await ExecSPToListAsync(sp);
 
-			AjaxDataTable<CategoryDataTableRow> categoryAjaxDataTable = new AjaxDataTable<CategoryDataTableRow>
+			AjaxDataTableDTO<CategoryDataTableRowDTO> categoryAjaxDataTable = new AjaxDataTableDTO<CategoryDataTableRowDTO>
 			{
 				Data = categoryDataTableRows.ToList(),
 				Draw = Page,

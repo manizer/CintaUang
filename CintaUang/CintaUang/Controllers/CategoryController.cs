@@ -4,22 +4,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using CintaUang.ViewModels.CategoryViewModels;
 using Microsoft.AspNetCore.Mvc;
-using Model.Common;
-using Model.DataTable;
-using Model.DataTable.Category;
-using Repository.Base.Helper;
-using Repository.Repositories;
-using Repository.Repositories.CategoryRepositories;
+using Model.Domain.DataTable;
+using Model.DTO.DB.DataTable.Common;
+using Service.Modules;
 
 namespace CintaUang.Controllers.CategoryControllers
 {
     public class CategoryController : Controller
     {
-		private readonly ICategoryDataTableRepository categoryDataTableRepository;
+		private readonly ICategoryService categoryService;
 
-		public CategoryController(ICategoryDataTableRepository categoryDataTableRepository)
+		public CategoryController(ICategoryService categoryService)
 		{
-			this.categoryDataTableRepository = categoryDataTableRepository;
+			this.categoryService = categoryService;
 		}
 
 		public IActionResult Index()
@@ -29,8 +26,15 @@ namespace CintaUang.Controllers.CategoryControllers
 
 		public async Task<JsonResult> DTT(int draw, int start, int length)
 		{
-			AjaxDataTable<CategoryDataTableRow> categoryAjaxDataTable = await categoryDataTableRepository.GetCategoryDataTable(1, 5, "", 0, "ASC");
-			return Json(categoryAjaxDataTable);
+			try
+			{
+				AjaxDataTable<CategoryDataTableRow> categoryAjaxDataTable = await categoryService.GetCategoryDataTable(1, 5, "", 0, AjaxDataTableCriteria.SortDirection.ASC);
+				return Json(categoryAjaxDataTable);
+			}
+			catch(Exception e)
+			{
+				throw e;
+			}
 		}
 	}
 }

@@ -12,6 +12,7 @@ using Repository.Base.Helper;
 using Repository.Base.Helper.StoredProcedure;
 using Repository.Context;
 using Repository.Repositories.CategoryRepositories;
+using Service.Modules;
 
 namespace CintaUang
 {
@@ -42,6 +43,7 @@ namespace CintaUang
 			 */
             services.AddTransient<ICategoryRepository, CategoryRepository>();
 			services.AddTransient<ICategoryDataTableRepository, CategoryDataTableRepository>();
+			services.AddTransient<ICategoryService, CategoryService>();
 
 			services.AddMvc();
 		}
