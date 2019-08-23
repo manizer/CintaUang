@@ -31,7 +31,7 @@ namespace Repository.Repositories.CategoryRepositories
 
 		public async Task<Category> GetCategory(int id)
         {
-            var sp = DbUtil.StoredProcedureBuilder.WithSPName("mscategory_getbyid").AddParam("ID", id).SP();
+            var sp = DbUtil.StoredProcedureBuilder.WithSPName("mscategory_getbyid").AddParam(id).SP();
             var category = await ExecSPToSingleAsync(sp);
             return category;
         }
@@ -41,8 +41,8 @@ namespace Repository.Repositories.CategoryRepositories
             List<StoredProcedure> storedProcedures = new List<StoredProcedure>();
             storedProcedures.Add(
                 DbUtil.StoredProcedureBuilder.WithSPName("mscategory_insert")
-                    .AddParam("categoryname", category.CategoryName) // hardcoded for convenience
-                    .AddParam("auditeduserid", AuditedUserId)
+                    .AddParam(category.CategoryName) 
+                    .AddParam(AuditedUserId)
                     .SP()
             );
             List<ExecuteResult> executeResults = (await ExecSPWithTransaction<ExecuteResult>(storedProcedures.ToArray())).ToList();

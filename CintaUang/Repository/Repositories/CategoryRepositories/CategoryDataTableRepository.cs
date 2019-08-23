@@ -24,11 +24,11 @@ namespace Repository.Repositories.CategoryRepositories
 		public async Task<AjaxDataTable<CategoryDataTableRow>> GetCategoryDataTable(int Page, int Take, string Search, int OrderColIdx, string OrderDirection)
 		{
 			var sp = DbUtil.StoredProcedureBuilder.WithSPName("mscategory_getallpaginated")
-				.AddParam("1", Page)
-				.AddParam("2", Take)
-				.AddParam("3", OrderDirection)
-				.AddParam("4", OrderColIdx)
-				.AddParam("5", Search)
+				.AddParam(Page)
+				.AddParam(Take)
+				.AddParam(OrderDirection)
+				.AddParam(OrderColIdx)
+				.AddParam(Search)
 				.SP();
 			IEnumerable<CategoryDataTableRow> categoryDataTableRows = await ExecSPToListAsync(sp);
 

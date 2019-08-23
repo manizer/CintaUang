@@ -6,9 +6,9 @@ namespace Repository.Base.Helper.StoredProcedure
     public abstract class StoredProcedureBuilder : IStoredProcedureBuilder
     {
         protected string SPName;
-        protected List<KeyValuePair<string, object>> Params = new List<KeyValuePair<string, object>>();
+        protected List<object> Params = new List<object>();
 
-        public virtual IStoredProcedureBuilder AddParam(string Key, object Value)
+        public virtual IStoredProcedureBuilder AddParam(object Value)
         {
             throw new NotImplementedException();
         }
@@ -26,7 +26,7 @@ namespace Repository.Base.Helper.StoredProcedure
         public void Dispose()
         {
             SPName = null;
-            Params = new List<KeyValuePair<string, object>>();
+            Params = new List<object>();
         }
     }
 }
