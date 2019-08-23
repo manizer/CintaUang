@@ -1,4 +1,6 @@
-﻿using Model.DataTable.Category;
+﻿using Model.Common;
+using Model.DataTable;
+using Model.DataTable.Category;
 using Repository.Base;
 using Repository.Base.Helper;
 using Repository.Context;
@@ -12,14 +14,14 @@ namespace Repository.Repositories.CategoryRepositories
 {
 	public interface ICategoryDataTableRepository : IRepository<CategoryDataTableRow>
 	{
-		Task<CategoryDataTable> GetCategoryDataTable(int Page, int Take, string Search, int OrderColIdx, string OrderDirection);
+		Task<AjaxDataTable<CategoryDataTableRow>> GetCategoryDataTable(int Page, int Take, string Search, int OrderColIdx, string OrderDirection);
 	}
 
 	public class CategoryDataTableRepository : BaseRepository<CategoryDataTableRow>, ICategoryDataTableRepository
 	{
 		public CategoryDataTableRepository(CintaUangDbContext dbContext, DbUtil dbUtil) : base(dbContext, dbUtil) { }
 
-		public async Task<CategoryDataTable> GetCategoryDataTable(int Page, int Take, string Search, int OrderColIdx, string OrderDirection)
+		public async Task<AjaxDataTable<CategoryDataTableRow>> GetCategoryDataTable(int Page, int Take, string Search, int OrderColIdx, string OrderDirection)
 		{
 			var sp = DbUtil.StoredProcedureBuilder.WithSPName("mscategory_getallpaginated")
 				.AddParam("1", Page)
@@ -30,7 +32,7 @@ namespace Repository.Repositories.CategoryRepositories
 				.SP();
 			IEnumerable<CategoryDataTableRow> categoryDataTableRows = await ExecSPToListAsync(sp);
 
-			CategoryDataTable categoryDataTable = new CategoryDataTable
+			AjaxDataTable<CategoryDataTableRow> categoryAjaxDataTable = new AjaxDataTable<CategoryDataTableRow>
 			{
 				Data = categoryDataTableRows.ToList(),
 				Draw = Page,
@@ -38,7 +40,7 @@ namespace Repository.Repositories.CategoryRepositories
 				RecordsTotal = categoryDataTableRows.Count()
 
 			};
-			return categoryDataTable;
+			return categoryAjaxDataTable;
 		}
 	}
 }

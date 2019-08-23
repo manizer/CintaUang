@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Model.DataTable.Category
+namespace Model.DataTable
 {
-	public class CategoryDataTable
+	public class AjaxDataTable<E> where E : class
 	{
 		[JsonProperty("draw")]
 		public int? Draw { get; set; }
@@ -14,6 +14,6 @@ namespace Model.DataTable.Category
 		[JsonProperty("recordsFiltered")]
 		public int? RecordsFiltered { get; set; }
 		[JsonProperty("data")]
-		public List<CategoryDataTableRow> Data { get; set; }
+		public List<E> Data { get; set; }
 	}
 }
