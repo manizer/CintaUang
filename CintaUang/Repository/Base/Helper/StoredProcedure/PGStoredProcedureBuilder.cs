@@ -7,9 +7,9 @@ namespace Repository.Base.Helper.StoredProcedure
 {
     public class PGStoredProcedureBuilder : StoredProcedureBuilder
     {
-        public override IStoredProcedureBuilder AddParam(string Key, object Value)
+        public override IStoredProcedureBuilder AddParam(object Value)
         {
-            Params.Add(new KeyValuePair<string, object>(Key, Value));
+            Params.Add(Value);
             return this;
         }
 
@@ -25,7 +25,7 @@ namespace Repository.Base.Helper.StoredProcedure
             StoredProcedure sp = new StoredProcedure
             {
                 SP = QueryStr,
-                args = Params.Select(x => x.Value).ToArray()
+                args = Params.ToArray()
             };
             Dispose();
             return sp;

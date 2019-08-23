@@ -4,7 +4,7 @@ namespace Repository.Base.Helper.StoredProcedure
     public interface IStoredProcedureBuilder : IDisposable
     {
         IStoredProcedureBuilder WithSPName(string StoredProcedureName);
-        IStoredProcedureBuilder AddParam(string Key, object Value);
+        IStoredProcedureBuilder AddParam(object Value);
         StoredProcedure SP();
     }
 }
