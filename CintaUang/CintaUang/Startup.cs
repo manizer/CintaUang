@@ -12,6 +12,7 @@ using Repository.Base.Helper;
 using Repository.Base.Helper.StoredProcedure;
 using Repository.Context;
 using Repository.Repositories.CategoryRepositories;
+using Repository.Repositories.UserRepositories;
 using Service.Modules;
 
 namespace CintaUang
@@ -45,6 +46,9 @@ namespace CintaUang
 			services.AddTransient<ICategoryDataTableRepository, CategoryDataTableRepository>();
 			services.AddTransient<ICategoryService, CategoryService>();
 
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IUserService, UserService>();
+
 			services.AddMvc();
 		}
 
@@ -60,7 +64,7 @@ namespace CintaUang
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}"
+                    template: "{controller=Auth}/{action=Index}/{id?}"
                 );
             });
 

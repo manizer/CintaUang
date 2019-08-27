@@ -1,5 +1,12 @@
 [
   {
+    "outputFileName": "wwwroot/css/login.min.css",
+    "inputFiles": [
+      "wwwroot/lib/bootstrap/dist/css/bootstrap.css",
+      "wwwroot/lib/custom/css/login.css"
+    ]
+  },
+  {
     "outputFileName": "wwwroot/css/vendor.min.css",
     "inputFiles": [
       "wwwroot/lib/bootstrap/dist/css/bootstrap.css",
@@ -59,12 +66,20 @@
   {
     "outputFileName": "wwwroot/js/site.min.js",
     "inputFiles": [
-      "wwwroot/lib/site.js"
+      "wwwroot/lib/custom/js/site.js"
     ],
     "minify": {
       "enabled": true,
       "renameLocals": true
     },
     "sourceMap": false
+  },
+  {
+    "outputFileName": "wwwroot/js/login.min.js",
+    "inputFiles": [
+      "wwwroot/lib/jquery/jquery.js",
+      "wwwroot/lib/bootstrap/dist/js/bootstrap.js",
+      "wwwroot/bootstrap/dist/js/bootstrap.js"
+    ]
   }
 ]
