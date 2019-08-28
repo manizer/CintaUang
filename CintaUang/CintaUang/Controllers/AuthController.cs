@@ -17,7 +17,13 @@ namespace CintaUang.Controllers
         {
             this.userService = userService;
         }
+
         public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult Register()
         {
             return View();
         }
@@ -30,7 +36,7 @@ namespace CintaUang.Controllers
                 return View("Index", viewModels);
             }
 
-            User user = await userService.doLogin(new User
+            User user = await userService.Login(new User
             {
                 UserEmail = viewModels.UserEmail,
                 UserPassword = viewModels.UserPassword
@@ -40,6 +46,29 @@ namespace CintaUang.Controllers
             {
                 AddNotification(ViewNotification.Make("User Tidak Ditemukan", ViewNotification.ERROR));
                 return View("Index", viewModels);
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterViewModel viewModels)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("Register", viewModels);
+            }
+
+            ExecuteResult result = await userService.Register(new User
+            {
+                UserName = viewModels.UserName,
+                UserEmail = viewModels.UserEmail,
+                UserPassword = viewModels.UserPassword
+            }, 1);
+
+            if (result == null)
+            {
+                return View(viewModels);
             }
 
             return RedirectToAction("Index", "Home");

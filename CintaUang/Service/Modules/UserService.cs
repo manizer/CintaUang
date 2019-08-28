@@ -10,7 +10,8 @@ namespace Service.Modules
 {
     public interface IUserService
     {
-        Task<User> doLogin(User user);
+        Task<User> Login(User user);
+        Task<ExecuteResult> Register(User user, int AuditedUserId);
     }
     public class UserService : IUserService
     {
@@ -21,9 +22,9 @@ namespace Service.Modules
             this.userRepository = userRepository;
         }
 
-        public async Task<User> doLogin(User user)
+        public async Task<User> Login(User user)
         {
-            UserDTO userDTO = await userRepository.doLogin(user.UserEmail, user.UserPassword);
+            UserDTO userDTO = await userRepository.Login(user.UserEmail, user.UserPassword);
 
             return (userDTO == null) ? null : new User
             {
@@ -31,6 +32,25 @@ namespace Service.Modules
                 UserName = userDTO.UserName,
                 UserEmail = userDTO.UserEmail,
                 UserPassword = userDTO.UserPassword
+            };
+        }
+
+        public async Task<ExecuteResult> Register(User user, int AuditedUserId)
+        {
+            ExecuteResultDTO executeResultDTO = await userRepository.Register
+            (
+                new UserDTO
+                {
+                    UserName = user.UserName,
+                    UserEmail = user.UserEmail,
+                    UserPassword = user.UserPassword
+                },
+                AuditedUserId
+            );
+
+            return (executeResultDTO == null) ? null : new ExecuteResult
+            {
+                InstanceId = executeResultDTO.InstanceId
             };
         }
     }
