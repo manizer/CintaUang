@@ -1,6 +1,5 @@
-﻿using Model.Domain;
-using Model.Domain.DataTable;
-using Model.DTO.DB;
+﻿using Model.Domain.DB;
+using Model.Domain.DB.DataTable;
 using Model.DTO.DB.DataTable;
 using Repository.Repositories.CategoryRepositories;
 using System;
@@ -22,33 +21,25 @@ namespace Service.Modules
 	{
 		private readonly ICategoryRepository categoryRepository;
 		private readonly ICategoryDataTableRepository categoryDataTableRepository;
+		private readonly IServiceProvider serviceProvider;
 
 		public CategoryService(ICategoryRepository categoryRepository,
-			ICategoryDataTableRepository categoryDataTableRepository)
+			ICategoryDataTableRepository categoryDataTableRepository,
+			IServiceProvider serviceProvider)
 		{
 			this.categoryRepository = categoryRepository;
 			this.categoryDataTableRepository = categoryDataTableRepository;
+			this.serviceProvider = serviceProvider;
 		}
 
 		public async Task<IEnumerable<Category>> GetCategories()
 		{
-			IEnumerable<CategoryDTO> categoryDTOs = await categoryRepository.GetCategories();
-			IEnumerable<Category> categories = categoryDTOs.Select(x => new Category
-			{
-				CategoryId = x.CategoryId,
-				CategoryName = x.CategoryName
-			});
-			return categories;
+			return await categoryRepository.GetCategories();
 		}
 
 		public async Task<Category> GetCategory(int CategoryId)
 		{
-			CategoryDTO categoryDTO = await categoryRepository.GetCategory(CategoryId);
-			return new Category
-			{
-				CategoryId = categoryDTO.CategoryId,
-				CategoryName = categoryDTO.CategoryName
-			};
+			return await categoryRepository.GetCategory(CategoryId);
 		}
 
 		public async Task<AjaxDataTable<CategoryDataTableRow>> GetCategoryDataTable(int Page, int Take, string Search, int OrderColIdx, string OrderDirection)
@@ -61,8 +52,8 @@ namespace Service.Modules
 				RecordsTotal = categoryAjaxDataTableDTO.RecordsTotal,
 				Data = categoryAjaxDataTableDTO.Data.Select(x => new CategoryDataTableRow
 				{
-					CategoryId = x.CategoryId,
-					CategoryName = x.CategoryName
+					Id = x.Id,
+					Name = x.Name
 				}).ToList()
 			};
 			return categoryAjaxDataTable;

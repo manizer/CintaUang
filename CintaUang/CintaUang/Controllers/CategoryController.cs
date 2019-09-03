@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using CintaUang.ViewModels.CategoryViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Model.Domain.DataTable;
+using Model.Domain.DB;
+using Model.Domain.DB.DataTable;
 using Model.DTO.DB.DataTable.Common;
 using Service.Modules;
 
@@ -19,8 +21,10 @@ namespace CintaUang.Controllers.CategoryControllers
 			this.categoryService = categoryService;
 		}
 
-		public IActionResult Index()
+		public async Task<IActionResult> Index()
 		{
+			List<Category> Categories = (await categoryService.GetCategories()).ToList();
+			List<SubCategory> SubCategoriesFromFirstCategory = Categories[0].Subcategories.Value;
 			return View(new IndexViewModel());
 		}
 

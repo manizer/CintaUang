@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Model.Domain.DataTable
+namespace Model.Domain.DB.DataTable
 {
 	public class AjaxDataTable<E> where E : class
 	{

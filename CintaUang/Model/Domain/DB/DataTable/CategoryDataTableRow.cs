@@ -4,13 +4,13 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Model.Domain.DataTable
+namespace Model.Domain.DB.DataTable
 {
 	public class CategoryDataTableRow : AjaxDataTableRow
 	{
-		[JsonProperty("categoryId")]
-		public int CategoryId { get; set; }
-		[JsonProperty("categoryName")]
-		public string CategoryName { get; set; }
+		[JsonProperty("id")]
+		public int Id { get; set; }
+		[JsonProperty("name")]
+		public string Name { get; set; }
 	}
 }

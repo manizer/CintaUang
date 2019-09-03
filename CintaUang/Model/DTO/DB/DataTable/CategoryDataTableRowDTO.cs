@@ -10,9 +10,9 @@ namespace Model.DTO.DB.DataTable
 	public class CategoryDataTableRowDTO : AjaxDataTableRowDTO
 	{
 		[Key]
-		[JsonProperty("categoryId")]
-		public int CategoryId { get; set; }
-		[JsonProperty("categoryName")]
-		public string CategoryName { get; set; }
+		[JsonProperty("id")]
+		public int Id { get; set; }
+		[JsonProperty("name")]
+		public string Name { get; set; }
 	}
 }

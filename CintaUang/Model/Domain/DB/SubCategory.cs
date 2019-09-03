@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Model.Domain
+namespace Model.Domain.DB
 {
-	public class Category
+	public class SubCategory
 	{
+		public int Id { get; set; }
 		public int CategoryId { get; set; }
-		public string CategoryName { get; set; }
+		public string Name { get; set; }
 	}
 }

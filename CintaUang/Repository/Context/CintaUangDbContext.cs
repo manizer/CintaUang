@@ -13,7 +13,10 @@ namespace Repository.Context
 
         public DbSet<ExecuteResultDTO> ExecuteResultDbSet { get; set; }
         public DbSet<CategoryDTO> CategoryDbSet { get; set; }
-        public DbSet<UserDTO> UserDbSet { get; set; }
+        public DbSet<SubCategoryDTO> SubCategoryDbSet { get; set; }
+		public DbSet<UserDTO> UserDbSet { get; set; }
+
+		// DataTable
         public DbSet<CategoryDataTableRowDTO> CategoryDataTableRowDbSet { get; set; }
     }
 }

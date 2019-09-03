@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using CintaUang.ViewModels.AuthViewModels;
 using Service.Modules;
 using Model.Domain;
+using Model.Domain.DB;
 
 namespace CintaUang.Controllers
 {

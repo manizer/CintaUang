@@ -1,4 +1,4 @@
-﻿using Model.Domain;
+﻿using Model.Domain.DB;
 using Model.DTO.DB;
 using Repository.Repositories.UserRepositories;
 using System;
