@@ -23,9 +23,35 @@ namespace CintaUang.Controllers.CategoryControllers
 
 		public async Task<IActionResult> Index()
 		{
-			List<Category> Categories = (await categoryService.GetCategories()).ToList();
-			List<SubCategory> SubCategoriesFromFirstCategory = Categories[0].Subcategories.Value;
 			return View(new IndexViewModel());
+		}
+
+		public async Task<IActionResult> Save(IndexViewModel indexViewModel)
+		{
+			if (!ModelState.IsValid)
+			{
+				return View("Index", indexViewModel);
+			}
+
+			if (indexViewModel.CategoryId == 0)
+			{
+				// Insert
+				ExecuteResult insertResult = await categoryService.Insert(new Model.Domain.DB.CategoryDB.InsertCategory
+				{
+					Name = indexViewModel.CategoryName
+				});
+			}
+			else
+			{
+				// Update
+				ExecuteResult updateResult = await categoryService.Update(new Model.Domain.DB.CategoryDB.UpdateCategory
+				{
+					Id = indexViewModel.CategoryId,
+					Name = indexViewModel.CategoryName
+				});
+			}
+
+			return RedirectToAction("Index", "Category");
 		}
 
 		public async Task<JsonResult> DTT(int draw, int start, int length)

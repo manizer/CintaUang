@@ -4,6 +4,34 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Categories</h2>
 
-@await Component.InvokeAsync("CategoriesTable")
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h2>Category</h2>
+            <form asp-controller="Category" asp-action="Save" method="post" class="form-category">
+                <div class="form-label-group">
+                    <label asp-for="CategoryName">Category Name</label>
+                    <input asp-for="CategoryName" class="form-control" placeholder="Category Name" type="text" />
+                    <span asp-validation-for="CategoryName" class="text-danger"></span>
+                </div>
+
+                <div class="row form-label-group">
+                    <div class="col-lg-12">
+                        <button class="btn btn-primary text-uppercase btn-block" type="submit">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h2>Categories</h2>
+            @await Component.InvokeAsync("CategoriesTable")
+        </div>
+    </div>
+</div>

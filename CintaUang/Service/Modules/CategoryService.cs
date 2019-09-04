@@ -1,5 +1,7 @@
 ﻿using Model.Domain.DB;
+using Model.Domain.DB.CategoryDB;
 using Model.Domain.DB.DataTable;
+using Model.DTO.DB.CategoryDB;
 using Model.DTO.DB.DataTable;
 using Repository.Repositories.CategoryRepositories;
 using System;
@@ -15,6 +17,8 @@ namespace Service.Modules
 		Task<IEnumerable<Category>> GetCategories();
 		Task<Category> GetCategory(int CategoryId);
 		Task<AjaxDataTable<CategoryDataTableRow>> GetCategoryDataTable(int Page, int Take, string Search, int OrderColIdx, string OrderDirection);
+		Task<ExecuteResult> Insert(InsertCategory insertCategory);
+		Task<ExecuteResult> Update(UpdateCategory insertCategory);
 	}
 
 	public class CategoryService : ICategoryService
@@ -57,6 +61,25 @@ namespace Service.Modules
 				}).ToList()
 			};
 			return categoryAjaxDataTable;
+		}
+
+		public async Task<ExecuteResult> Insert(InsertCategory insertCategory)
+		{
+			return await categoryRepository.InsertCategory(new InsertCategoryDTO
+			{
+				Name = insertCategory.Name,
+				AuditedUserId = insertCategory.AuditedUserId
+			});
+		}
+
+		public async Task<ExecuteResult> Update(UpdateCategory updateCategory)
+		{
+			return await categoryRepository.UpdateCategory(new UpdateCategoryDTO
+			{
+				Id = updateCategory.Id,
+				Name = updateCategory.Name,
+				AuditedUserId = updateCategory.AuditedUserId
+			});
 		}
 	}
 }

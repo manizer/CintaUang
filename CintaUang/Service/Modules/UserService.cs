@@ -1,5 +1,7 @@
 ﻿using Model.Domain.DB;
+using Model.Domain.DB.UserDB;
 using Model.DTO.DB;
+using Model.DTO.DB.UserDB;
 using Repository.Repositories.UserRepositories;
 using System;
 using System.Collections.Generic;

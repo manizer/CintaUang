@@ -14,6 +14,8 @@ namespace CintaUang.Controllers
         private readonly ICategoryRepository categoryRepository;
         private readonly UnitOfWork unitOfWork;
 
+		int angka = 5;
+
         public HomeController(ICategoryRepository categoryRepository, UnitOfWork unitOfWork)
         {
             this.categoryRepository = categoryRepository;
@@ -30,7 +32,8 @@ namespace CintaUang.Controllers
             });
 
             // Without local context
-            var categories = await categoryRepository.GetCategories();
+            var categories = (await categoryRepository.GetCategories()).ToList();
+			var subcategories = categories[0].Subcategories.Value;
             AddNotification(ViewNotification.Make("Alert sukses terbentuk", ViewNotification.SUCCESS));
             AddNotification(ViewNotification.Make("Alert Error terbentuk", ViewNotification.ERROR));
             return View();

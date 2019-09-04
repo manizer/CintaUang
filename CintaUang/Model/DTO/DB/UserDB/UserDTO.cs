@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace Model.DTO.DB
+namespace Model.DTO.DB.UserDB
 {
     public class UserDTO
     {

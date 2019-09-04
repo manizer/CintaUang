@@ -1,4 +1,5 @@
 ﻿using Model.DTO.DB;
+using Model.DTO.DB.UserDB;
 using Repository.Base;
 using Repository.Base.Helper;
 using Repository.Base.Helper.StoredProcedure;

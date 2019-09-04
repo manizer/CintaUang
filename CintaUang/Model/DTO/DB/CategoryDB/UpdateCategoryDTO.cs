@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace Model.DTO.DB
+namespace Model.DTO.DB.CategoryDB
 {
-	public class SubCategoryDTO
+	public class UpdateCategoryDTO
 	{
-		[Key]
 		public int Id { get; set; }
-		public int CategoryId { get; set; }
 		public string Name { get; set; }
+		public int AuditedUserId { get; set; }
 	}
 }

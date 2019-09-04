@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Model.Domain.DB
+namespace Model.Domain.DB.SubCategoryDB
 {
-	public class Category 
+	public class SubCategory
 	{
 		public int Id { get; set; }
+		public int CategoryId { get; set; }
 		public string Name { get; set; }
-
-		public Lazy<List<SubCategory>> Subcategories { get; set; }
 	}
 }

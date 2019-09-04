@@ -1,7 +1,10 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Model.DTO.DB;
+using Model.DTO.DB.CategoryDB;
 using Model.DTO.DB.DataTable;
+using Model.DTO.DB.SubCategoryDB;
+using Model.DTO.DB.UserDB;
 
 namespace Repository.Context
 {

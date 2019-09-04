@@ -4,6 +4,7 @@ using CintaUang.ViewModels.AuthViewModels;
 using Service.Modules;
 using Model.Domain;
 using Model.Domain.DB;
+using Model.Domain.DB.UserDB;
 
 namespace CintaUang.Controllers
 {

@@ -1,5 +1,5 @@
-﻿using Model.Domain.DB;
-using Model.DTO.DB;
+﻿using Model.Domain.DB.SubCategoryDB;
+using Model.DTO.DB.SubCategoryDB;
 using Repository.Repositories.SubCategoryRepositories;
 using System;
 using System.Collections.Generic;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Model.Domain.DB
+namespace Model.Domain.DB.UserDB
 {
     public class User
     {

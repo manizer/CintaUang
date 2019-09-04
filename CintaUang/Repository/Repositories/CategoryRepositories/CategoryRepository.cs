@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Model.Domain.DB;
+using Model.Domain.DB.CategoryDB;
+using Model.Domain.DB.SubCategoryDB;
 using Model.DTO.DB;
+using Model.DTO.DB.CategoryDB;
 using Repository.Base;
 using Repository.Base.Helper;
 using Repository.Base.Helper.StoredProcedure;
@@ -16,8 +19,9 @@ namespace Repository.Repositories.CategoryRepositories
     {
         Task<IEnumerable<Category>> GetCategories();
         Task<Category> GetCategory(int id);
-        Task<IEnumerable<ExecuteResult>> InsertCategory(CategoryDTO category, int AuditedUserId);
-    }
+        Task<ExecuteResult> InsertCategory(InsertCategoryDTO insertCategoryDTO);
+        Task<ExecuteResult> UpdateCategory(UpdateCategoryDTO insertCategoryDTO);
+	}
 
     public class CategoryRepository : BaseRepository<CategoryDTO>, ICategoryRepository
 	{ 
@@ -54,21 +58,38 @@ namespace Repository.Repositories.CategoryRepositories
 			};
 		}
 
-        public async Task<IEnumerable<ExecuteResult>> InsertCategory(CategoryDTO category, int AuditedUserId)
+        public async Task<ExecuteResult> InsertCategory(InsertCategoryDTO category)
         {
             List<StoredProcedure> storedProcedures = new List<StoredProcedure>();
             storedProcedures.Add(
                 DbUtil.StoredProcedureBuilder.WithSPName("mscategory_insert")
                     .AddParam(category.Name) 
-                    .AddParam(AuditedUserId)
+                    .AddParam(category.AuditedUserId)
                     .SP()
             );
 			IEnumerable<ExecuteResultDTO> executeResults = await ExecSPWithTransaction<ExecuteResultDTO>(storedProcedures.ToArray());
 			return executeResults.Select(x => new ExecuteResult
 			{
 				InstanceId = x.InstanceId,
-			});
+			}).FirstOrDefault();
         }
+
+		public async Task<ExecuteResult> UpdateCategory(UpdateCategoryDTO category)
+		{
+			List<StoredProcedure> storedProcedures = new List<StoredProcedure>();
+			storedProcedures.Add(
+				DbUtil.StoredProcedureBuilder.WithSPName("mscategory_update")
+					.AddParam(category.Id)
+					.AddParam(category.Name)
+					.AddParam(category.AuditedUserId)
+					.SP()
+			);
+			IEnumerable<ExecuteResultDTO> executeResults = await ExecSPWithTransaction<ExecuteResultDTO>(storedProcedures.ToArray());
+			return executeResults.Select(x => new ExecuteResult
+			{
+				InstanceId = x.InstanceId,
+			}).FirstOrDefault();
+		}
 
 		#region Mapping DB
 		private Lazy<List<SubCategory>> _SubCategories(int CategoryID)
